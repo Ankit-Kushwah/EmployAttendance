@@ -14,7 +14,7 @@
 			height: 550px;
 			margin-top: 4%;
 			margin-left: 35%;
-			border-radius: 5px;
+			border:0;
 			padding-left:40px ;
 			overflow-wrap: inherit;
             color: black;

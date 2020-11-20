@@ -23,15 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-
+    <?php
+    // $query=$this->db->query('select * from empolyees_reg');
+    ?>
    <div id="body">
-	<h1>AdminPanel</h1>
-	<div>
-       <button class="btn-edit" id="btn"name="edit">Edit</button>
-                    <button class="btn-delete" name="delete">Delete</button>
-       </div>
         <table>
-            <thead></thead>
+            <thead>Employees Data</thead>
             <tbody>
                 <tr>
                     <th>User_Id &nbsp;</th>
@@ -42,16 +39,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <th>Mobile &nbsp;</th>
                     <th>Address &nbsp;</th>
                 </tr><?php
-                foreach($row as $result){ 
+                foreach($data as $row){
                     ?>
-                <tr><td><input type="checkbox" id="key" value="<?php echo $result["id"]; ?>" > </td>
-                    <td><input readonly  name="key" value="<?php echo $result["id"]; ?>"></td>
-                    <td><input readonly  name="fname" value="<?php echo $result["First_Name"]; ?>"></td>
-                    <td><input readonly  name="lname" value="<?php echo $result["Last_Name"]; ?>"></td>
-                    <td><input readonly  name="email" value="<?php echo $result["Email"]; ?>"></td>
-                    <td><input readonly  name="password" value="<?php echo $result["Password"]; ?>"></td>
-                    <td><input readonly  name="mobile" value="<?php echo $result["Mobile"]; ?>"></td>
-                    <td><input readonly  name="address" value="<?php echo $result["Address"]; ?>"></td>
+                <tr><td><input type="checkbox" id="key"> </td>
+                   
+                    <td><input readonly  name="fname" value="<?php echo $row->First_Name ?>"></td>
+                    <td><input readonly  name="lname" value="<?php echo $row->Last_Name ?>"></td>
+                    <td><input readonly  name="email" value="<?php echo $row->Email ?>"></td>
+                    <td><input readonly  name="password" value="<?php echo $row->Password ?>"></td>
+                    <td><input readonly  name="mobile" value="<?php echo $row->Mobile ?>"></td>
+                    <td><input readonly  name="address" value="<?php echo $row->Address ?>"></td>
                 </tr>
                 <?php
                 }
