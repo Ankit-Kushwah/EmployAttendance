@@ -27,4 +27,8 @@ class Attendance extends CI_Controller {
 	{ 
 		$this->load->view('Emp_Reg');
 	}
+	public function webcam()
+	{ 
+		$this->load->view('webcam.html');
+	}
 }

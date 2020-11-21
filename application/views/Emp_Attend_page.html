@@ -1,29 +1,90 @@
-<video id="video" width="640" height="480" autoplay></video>
-<button id="snap">Snap Photo</button>
-<canvas id="canvas" width="640" height="480"></canvas>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            MArkAttendance
+        </title>
+        <style>
+            #video{
+                
+                top: 50%;
+                left:100%;
+                width: 15em;
+                height: 15em;
+                transform:translate(220%,0%) ;
+            }
+            .Image-box{
+                position:absolute;
+                width: 100%;
+                height: 8em;
+                background-color: chartreuse;
+                left: 50;
+                top: 50;
+                z-index: 2;
+                transform: translate(-50,-50);
+                padding-top: 1em;
 
-<script type="text/javascript">
-	// Grab elements, create settings, etc.
-var video = document.getElementById('video');
+            }
+            #snap{
+                position: relative;
+                top:50%;
+                left:25em;
+                transform:translate(20%,-50%) ; 
+            } 
+        </style>
+    </head>
+    <body>
+        <script>
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            upload_name: 'webcam',
+            jpeg_quality: 90
+        });
+    </script>
+        <button type="button" class="btn btn-info" onClick="take_snapshot()">Capture</button>
+<div class="col-md-3 col-md-offset-1 imager" id="results" name="results">       
+    <input id="results" type="" name="results" value=""/>
+    <div class="clearfix" id="my_camera"></div>
+    <script>
+    function take_snapshot() {                
+        Webcam.snap(function (data_uri) {
+            document.getElementById('results').innerHTML ='<img src="' + data_uri + '"/>';
+        });
+        Webcam.upload(data_uri, '"<?php echo site_url(); ?>Enquiry_Management/Demosave"', function(code, text) {
+            if (code === '200') {
+                alert ('ok');
+            } else {
+                alert('error');
+            }
+        });
+    }
 
-// Get access to the camera!
-if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-        //video.src = window.URL.createObjectURL(stream);
-        video.srcObject = stream;
-        video.play();
-    });
-}
-
-// Elements for taking the snapshot
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var video = document.getElementById('video');
-
-// Trigger photo take
-document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 640, 480);
-});
-
+   
 </script>
+    <!-- Webcam.attach('#my_camera')
+        <video id="video" autoplay></video>
+        <button onclick="take_snapshot() ">Snap Photo</button>
+        <canvas style="position:absolute; z-index: -1;" width="640" height="480"></canvas>
+        <div  class="Image-box">
+             <table>
+            <tr>
+                <td><input hidden="hidden" name="date" value="<?php echo date('d-m-y');?>"/></td>
+                <td><canvas id="canvas"></canvas> </td>
+            </tr>
+        </table>
+            
+           </div>
+
+        <script type="text/javascript">
+
+                function take_snapshot() {                
+                Webcam.snap(function (data_uri) {
+                    document.getElementById('results').innerHTML ='<img src="' + data_uri + '"/>';
+     });
+     }
+        </script> -->
+    </body>
+    
+</html>
