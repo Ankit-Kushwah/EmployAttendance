@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<style>
-		body{
-			background-image: url(w1.jpg);
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center center;
-		}
 		.reg{
 			background-size: cover;
 			background-color: rgba(218, 226, 226, 0.2);
 			width: 350px;
-			height: 550px;
-			margin-top: 4%;
-			margin-left: 35%;
+			height: 500px;
+			margin-left: 110%;
 			border:0;
 			padding-left:40px ;
 			overflow-wrap: inherit;
@@ -23,8 +16,8 @@
 			font-size: 32px;
 			width: 120px;
 			height: 50px;
-			margin-left: 90px;
-			margin-top: 30px;
+			margin-right: 135px;
+            float: right;
 			padding-top: 20px;
 			text-decoration-line: underline;
 			
@@ -69,7 +62,7 @@
 
 	
 <body>
-	<section id="#">
+	
 		<form method="POST"  name="form1" action="http://localhost/UbiAttendance/index.php/Attendance/create">
 <div class="reg">
 	<h1>Register</h1>
@@ -99,12 +92,16 @@
 						<td>Address</td>
 						<td><input type="text" required name="addr" placeholder="Address" id=""></td>
 					</tr>
+					<tr>
+						<td>Designation</td>
+						<td><input type="text" readonly  name="designation" value="User"></td>
+					</tr>
 				</tbody>
 					  
 	   </table>
 	   <button class="smt" type="submit"  value="Submit" name="form1" >Submit</button>
 	</div>
 </form>
-</section>
+
 </body>
 </html>

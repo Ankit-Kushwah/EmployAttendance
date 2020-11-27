@@ -14,17 +14,16 @@
                 }
             #pro-img{
                 margin-top: 10px;
-                padding: 5em 6em;
                 background-color: bisque;
             }
             input{
-                padding:0.8em 3em;
-                width: 60%;
-                margin-bottom: 0.3em;
+                height:1.9em;
+                width: 85%;
+                margin-bottom: 0.1em;
                 background: transparent;
                 border: none;
-                /* outline: transparent; */
-                /* line-height: 1em; */
+                text-align:center;
+              
                 }
             input:hover{
                 background-color: aquamarine;
@@ -66,9 +65,16 @@
           border-radius: 4px;
         }
         
-        .header a.logo {
+        .header .logo {
           font-size: 25px;
           font-weight: bold;
+          border: 0;
+        }
+        .header .logo:hover{
+          background-color: aquamarine;
+          padding: 0.4em 1.8em;
+          border-radius:8px;
+
         }
         
         .header a:hover {
@@ -100,27 +106,36 @@
         }
         </style>
     </head>
-    <body>
+    <body id="div1">
         <div class="header">
-            <a href="#default" class="logo">Profile</a>
+            <button id="ed" class="logo">Attendance</button>
             <div class="header-right">
-              <a href="">Attendance</a>
-              <a href="">Logout</a>
+              <a href="http://localhost/UbiAttendance/index.php/Attendance/unset_session_data">Logout</a>
             </div>
           </div>
         <div class="profile-page">
-                    <div><img src="" id="pro-img" /></div>
+                    <?php foreach($data as $row) {?>
+                    <div><img src="http://localhost/UbiAttendance/assets<?php echo $row->Image ?>" id="pro-img" /></div>
                     <hr>
-                    <input type="text" name="fname" value="" >
-                    <input type="text" name="lname" value="" >
-                    <input type="text" name="email" value="" >
-                    <input type="text" name="password" value="" >
-                    <input type="text" name="mobile" value="" >
-                    <input type="text" name="address" value="" >
-                    <!-- <input type="text" name="lname" value="" > -->
-
+                    <input type="text" name="fname" value="<?php echo $row->First_Name ?>" >
+                    <input type="text" name="lname" value="<?php echo $row->Last_Name ?>" >
+                    <input type="text" name="email" value="<?php echo $row->Email ?>" >
+                    <input type="text" name="password" value="<?php echo $row->Password ?>" >
+                    <input type="text" name="mobile" value="<?php echo $row->Mobile ?>" >
+                    <input type="text" name="address" value="<?php echo $row->Address ?>" >
+                    <?php }?>
                     <button id="pro-btn"><b>EDIT</b></button>
         </div>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+        <script>
+          $(document).ready(function(){
+            $("#ed").click(function(){
+              $.ajax({url: "http://localhost/UbiAttendance/index.php/Attendance/home", success: function(result){
+                $("#div1").html(result);
+              }});
+            });
+          });
+        </script>
     </body>
 </html>

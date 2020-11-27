@@ -6,33 +6,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<style type="text/css">
 
+	::selection { background-color: #E13300; color: white; }
+	::-moz-selection { background-color: #E13300; color: white; }
+
+	
     table{
         border:0;
-        border-spacing:1px;
     }
-    
+    table thead{
+       
+    }
     tr{
         width: 100%;
-        height:3em;
+        height: 3em;
         font-size: large;
         background-color: aquamarine;
         line-height: 0.5em;
     }
     td{
-        height: 1em;
-        font-size: medium;
+        height: 2em;
+        font-size: large;
         background-color:transparent;
         line-height: 0.5em;
-        
     }
     input{
         background-color: transparent;
         border: 0;
-        margin:0;
-        width:10.2em;
         text-align: -webkit-center;
-        font-size: large;
-        overflow:auto;
+        font-size: larger;
     }
     
 	</style>
@@ -41,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
    <div id="body">
         <table>
-            <thead><h5 style="font-size:24px; margin: 0; text-align: center;"><b>Employees Data</b></h5></thead>
+            <thead >Data</b></h5></thead>
             <tbody>
                 <tr>
                     <th>User_Id &nbsp;</th>
@@ -56,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     ?>
                 <tr>
                     <!-- <td><input type="checkbox" id="key"> </td> -->
-                    <td><input readonly  name="fname" value="<?php echo $row->id ?>"></td>
+                   
                     <td><input readonly  name="fname" value="<?php echo $row->First_Name ?>"></td>
                     <td><input readonly  name="lname" value="<?php echo $row->Last_Name ?>"></td>
                     <td><input readonly  name="email" value="<?php echo $row->Email ?>"></td>

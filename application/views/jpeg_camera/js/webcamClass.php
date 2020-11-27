@@ -1,7 +1,7 @@
 <?php
 require_once( dirname( __FILE__ ) . '/connectionClass.php' );
 class webcamClass extends connectionClass{
-    private $imageFolder="webcamImage/";
+    private $imageFolder="assets/";
     
     //This function will create a new name for every image captured using the current data and time.
     private function getNameWithPath(){
