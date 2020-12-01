@@ -69,6 +69,8 @@
           font-size: 25px;
           font-weight: bold;
           border: 0;
+          line-height:12px;
+          padding:12px;
         }
         .header .logo:hover{
           background-color: aquamarine;
@@ -109,13 +111,14 @@
     <body id="div1">
         <div class="header">
             <button id="ed" class="logo">Attendance</button>
+            <a href= "http://localhost/UbiAttendance/index.php/Attendance/home" class="logo">Home</a>
             <div class="header-right">
               <a href="http://localhost/UbiAttendance/index.php/Attendance/unset_session_data">Logout</a>
             </div>
           </div>
         <div class="profile-page">
                     <?php foreach($data as $row) {?>
-                    <div><img src="http://localhost/UbiAttendance/assets<?php echo $row->Image ?>" id="pro-img" /></div>
+                    <div><img src="http://localhost/UbiAttendance/assets.<?php echo $row->Image ?>" id="pro-img" /></div>
                     <hr>
                     <input type="text" name="fname" value="<?php echo $row->First_Name ?>" >
                     <input type="text" name="lname" value="<?php echo $row->Last_Name ?>" >
@@ -131,7 +134,7 @@
         <script>
           $(document).ready(function(){
             $("#ed").click(function(){
-              $.ajax({url: "http://localhost/UbiAttendance/index.php/Attendance/home", success: function(result){
+              $.ajax({url: "http://localhost/UbiAttendance/index.php/Attendance/webcam", success: function(result){
                 $("#div1").html(result);
               }});
             });

@@ -69,6 +69,7 @@
    <div class="header">
         <button id="ed" >Employes Detail</button>
         <button id="ev" >Employes Registration</button>
+        <button id="ec" >Employes Record</button>
         <div class="header-right">
         <a href="http://localhost/UbiAttendance/index.php/Attendance/unset_session_data">Logout</a>
         </div>
@@ -91,6 +92,15 @@
 $(document).ready(function(){
   $("#ed").click(function(){
     $.ajax({url: "http://localhost/UbiAttendance/index.php/Attendance/Udata", success: function(result){
+      $("#div1").html(result);
+    }});
+  });
+  
+});
+
+$(document).ready(function(){
+  $("#ec").click(function(){
+    $.ajax({url: "http://localhost/UbiAttendance/index.php/Attendance/emp_rec", success: function(result){
       $("#div1").html(result);
     }});
   });

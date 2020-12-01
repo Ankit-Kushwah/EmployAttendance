@@ -42,7 +42,7 @@ class Attendance_Model extends CI_Model {
 				}
 				else
 				{
-					$query=$this->db->query("select * from empolyees_reg where email='$email'");
+					$query=$this->db->query("select * from emp_attend where email='$email'");
                     $result['data']= $query->result();  
 					$this->load->view('Emp_Attend_page',$result);
 				}		
@@ -59,6 +59,18 @@ class Attendance_Model extends CI_Model {
 		$query=$this->db->query("select * from empolyees_reg where email='$email'");
         return $query->result();  
 		
+	}
+
+	public function empImage(){
+		$email = $this->session->userdata('email');
+		$query=$this->db->query("select * from emp_attend where email='$email'");
+         return $query->result();  
+					
+	}
+	public function emp_rec_empImage(){
+		$email = $this->session->userdata('email');
+		$query=$this->db->query("select * from emp_attend ");
+         return $query->result();  
 	}
 	
 	public  function photo_capture_model()
@@ -79,7 +91,7 @@ class Attendance_Model extends CI_Model {
 
 				// print_r($fileName);
 
-				$this->Attendance_Model->photo_capture_db_model($file);
+				$this->Attendance_Model->photo_capture_db_model($fileName);
 
 
 				}
@@ -94,20 +106,59 @@ class Attendance_Model extends CI_Model {
 				foreach($query->result() as $row){
 					$id = $row->id;
 				}
+				$time =  time('H:i:s');
+				$date =  date('Y-m-d');
 
 
-				if( $query=$this->db->query("Insert into emp_attend (image,id,Email) values ('$file','$id','$email')") == 1)
+				if( $query=$this->db->query("Insert into emp_attend (image,id,Email,date,time) values ('$file','$id','$email','$date','$time')") == 1)
 				{
-				$this->load->view('Emp_Attend_page');
+				$this->load->view('webcam');
 							}
 				else
 				{
 					echo "Check Please .....";
 				}
-     }
+    }
 
 		
 
+	function do_upload() {
+
+		$config = array(
+				'allowed_types' => 'jpg|png|bmp', 
+				'upload_path'=>'./image/.', //make sure you have this folder
+				'max_size'=>2000
+			);
+	
+			$this->load->library('upload',$config);
+	
+			if ($this->upload->do_upload()) {
+				echo "Upload success!";
+			} else {
+				echo "Upload failed!";
+			}
+		$image_data = $this->upload->data();
+	
+		}  
+	
+	function get_images()
+		{
+			$query = $this->db->get('image');
+			return $query;
+		}
+	
+	function Save_gallery($in)
+	{
+	$save=$this->db->insert('animalstore',$in);
+	return $save;
+	}
 
 
-}
+
+
+
+
+
+
+
+	}

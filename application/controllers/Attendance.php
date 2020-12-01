@@ -8,7 +8,7 @@ class Attendance extends CI_Controller {
     $this->load->library('session');
     $this->load->model('Attendance_Model');
 	}
-	public function index()
+	public function index11()
 	{
 		$this->load->view('Attendance_Site');
 	}
@@ -55,11 +55,54 @@ class Attendance extends CI_Controller {
 	}
 	public function home()
 	{ 
-		$this->load->view('Emp_Attend_page');
+		$result['data']= $this->Attendance_Model->empImage();
+		$this->load->view('Emp_Attend_page',$result);
 	}
 	
 	public function unset_session_data()
     { 
        $this->load->view('Attendance_Site'); 
+	}
+	public function emp_rec()
+	{
+		$result['data']= $this->Attendance_Model->emp_rec_empImage();
+		$this->load->view('Emp_req',$result);
+	}
+	//===================================================================================
+	
+	function index()
+{
+
+    if ($this->input->post('upload')) {
+
+    $in=array();
+    $in['a_name']    = $this->input->post('a_name');
+    $in['a_details'] = $this->input->post('a_info');
+    $in['a_photo']=$_FILES['userfile']['name'];
+
+    if($this->Attendance_Model->do_upload()) {
+
+    echo $this->upload->display_errors();
+
+    }else {
+
+    $this->Attendance_Model->Save_gallery($in);
+
+    header('location:index');
     }
+
+    $data['images']=$this->Attendance_Model->get_images();
+    $this->load->view('image_view',$data);  
+}
+	
+
+} 
+
+
+
+
+
+
+
+
 }
